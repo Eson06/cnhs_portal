@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('subjects', function (Blueprint $table) {
             $table->id();
             $table->string('grade_section');
-            $table->string('subject');
+            $table->string('class_subject');
             $table->string('school_year');
             $table->string('teacher_id');
             $table->timestamps();

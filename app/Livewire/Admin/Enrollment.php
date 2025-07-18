@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin;
 
+use App\Models\activity_log;
 use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\Attributes\On;
@@ -95,7 +96,6 @@ public function mount() {
             return;
         }
     
-        // Save student personal info
         $newstudent = new student_information();
         $newstudent->birthday = $this->birthday;
         $newstudent->lrn = $this->lrn;
@@ -112,7 +112,6 @@ public function mount() {
         $newstudent->ec_relationship = $this->ec_relationship;
         $studentSaved = $newstudent->save();
     
-        // Save enrollment info
         $newenrollment = new enrollment_status();
         $newenrollment->lrn = $this->lrn;
         $newenrollment->ip = $this->ip;
@@ -121,6 +120,13 @@ public function mount() {
         $newenrollment->enrollment_type = $this->enrollment_type;
         $newenrollment->school_year = $this->school_year;
         $enrollmentSaved = $newenrollment->save();
+
+        $newlog = new activity_log();
+        $newlog->name = auth('web')->user()->name;
+        $newlog->user_name = auth('web')->user()->user_name;
+        $newlog->role = auth('web')->user()->role;
+        $newlog->activity = "Enrolled Student - ";
+        $newlog = $newlog->save();
     
         if ($studentSaved && $enrollmentSaved) {
             $this->showToastr('Student Enrolled Successfully', 'success');
