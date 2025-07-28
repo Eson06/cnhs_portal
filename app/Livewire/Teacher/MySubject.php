@@ -27,7 +27,7 @@ class MySubject extends Component
     
         $teacherId = auth('web')->user()->id;
     
-        // Check for duplicate record
+  
         $existing = subject::where('grade_section', $this->grade_section)
             ->where('class_subject', $this->class_subject)
             ->where('school_year', $this->school_year)
@@ -39,7 +39,7 @@ class MySubject extends Component
             return;
         }
     
-        // If not exists, create new
+
         $newsubject = new subject();
         $newsubject['grade_section'] = $this->grade_section;
         $newsubject['class_subject'] = $this->class_subject;
