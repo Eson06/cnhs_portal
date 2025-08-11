@@ -42,7 +42,6 @@
                     <th>#</th>
                     <th>Timestamp</th>
                     <th>Name</th>
-                    <th>Role</th>
                     <th>Activity</th>
                 </tr>
             </thead>
@@ -51,8 +50,7 @@
                     <tr wire:key="{{ $activity_log->id }}">
                         <td>{{ $index + 1 }}</td>
                         <td>{{ $activity_log->created_at }}</td>
-                        <td><strong>{{ $activity_log->name }}</strong></td>
-                        <td>{{ $activity_log->role }}</td>
+                        <td><strong>{{ $activity_log->aluser->name }}</strong></td>
                         <td>{{ $activity_log->activity }}</td>
                     </tr>
                 @empty

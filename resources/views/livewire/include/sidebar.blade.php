@@ -14,7 +14,8 @@
 
         <div class="nav-item dropdown">
           <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
-            <span class="avatar avatar-sm rounded-circle" style="background-image: url({{asset('images/cnhs_logo.png')}})"></span>
+            <!-- <span class="avatar avatar-sm rounded-circle" style="background-image: url({{asset('images/cnhs_logo.png')}})"></span> -->
+            
             <div class="d-none d-xl-block ps-2">
                 <div>{{ auth('web')->User()->name }}</div>
             </div>
@@ -45,27 +46,7 @@
                 </a>
             </li>
 
-            {{-- <li class="hr-text m-2">Encoder Panel</li>
-
-            <li class="nav-item {{ Route::is('profile.booking') ? 'active' : '' }}">
-                <a class="nav-link" href="{{ route('profile.booking')}}" wire:navigate >
-                    <span class="nav-link-icon d-md-none d-lg-inline-block">
-                        <svg class="icon icon-tabler icon-tabler-layout-dashboard" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                            <path d="M4 4h6v8h-6z"></path>
-                            <path d="M4 16h6v4h-6z"></path>
-                            <path d="M14 12h6v8h-6z"></path>
-                            <path d="M14 4h6v4h-6z"></path>
-                        </svg>
-                    </span>
-                  <span class="nav-link-title">
-                    Booking
-                  </span>
-                </a>
-            </li> --}}
-
-
-
+            @can ('AdminRole', '/App/Models/User')
             <li class="hr-text m-2">Admin Panel</li>
 
             <li class="nav-item {{ Route::is('admin.enrollment') ? 'active' : '' }}">
@@ -180,8 +161,10 @@
               </span>
               </a>
           </li>
+          @endcan
 
 
+             @can ('StudentRole', '/App/Models/User')
           <li class="hr-text m-2">Student Panel</li>
           <li class="nav-item {{ Route::is('student.student-dashboard') ? 'active' : '' }}">
             <a  href="{{ route('student.student-dashboard')}}" class="nav-link "  wire:navigate >
@@ -202,6 +185,27 @@
             </a>
         </li>
 
+         <li class="nav-item {{ Route::is('student.request-form') ? 'active' : '' }}">
+            <a  href="{{ route('student.request-form')}}" class="nav-link "  wire:navigate >
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                    <svg class="icon icon-tabler icon-tabler-users-group" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                        <path d="M10 13a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M8 21v-1a2 2 0 0 1 2 -2h4a2 2 0 0 1 2 2v1"></path>
+                        <path d="M15 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M17 10h2a2 2 0 0 1 2 2v1"></path>
+                        <path d="M5 5a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
+                        <path d="M3 13v-1a2 2 0 0 1 2 -2h2"></path>
+                    </svg>
+                </span>
+            <span class="nav-link-title">
+                Request Form
+            </span>
+            </a>
+        </li>
+        @endcan
+
+         @can ('TeacherRole', '/App/Models/User')
         <li class="hr-text m-2">Teacher Panel</li>
           <li class="nav-item {{ Route::is('teacher.my-subject') ? 'active' : '' }}">
             <a  href="{{ route('teacher.my-subject')}}" class="nav-link "  wire:navigate >
@@ -221,6 +225,7 @@
             </span>
             </a>
         </li>
+        @endcan
         </ul>
       </div>
     </div>

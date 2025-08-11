@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('activity_logs', function (Blueprint $table) {
+        Schema::create('request_documents', function (Blueprint $table) {
             $table->id();
             $table->string('lrn');
-            $table->string('activity');
+            $table->string('document');
+            $table->string('purpose');
+            $table->string('status');
+            $table->string('decline_purpose')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('activity_logs');
+        Schema::dropIfExists('request_documents');
     }
 };

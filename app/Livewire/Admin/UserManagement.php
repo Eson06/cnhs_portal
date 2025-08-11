@@ -15,7 +15,7 @@ class UserManagement extends Component
 
     public $hasMore,$limitPerPage,$count,$Search, $SearchEmployee;
 
-    public $name;
+    public $name,$lrn, $role_id;
 
     public $user_name,$updateUser, $password, $confirm_password,$UserisActive,$TempMultipleRole,$SelectedRole;
 
@@ -84,7 +84,6 @@ class UserManagement extends Component
     public function editUser($id) {
       
         $User = User::findorfail($id);
-
         $this->updateUser = true;
         $this->user_name = $User->user_name;
         $this->name = $User->name;
@@ -143,29 +142,37 @@ class UserManagement extends Component
 
 
     public function addUser() {
-      
+           $existingUser = User::where('user_name', $this->lrn)->orWhere('user_name', $this->user_name)->first();
+
+    if ($existingUser) {
+        $this->showToastr('User with this ID No. already has Login Credential!', 'warning');
+        return;
+    }
         if($this->updateUser == false) {
             $this->validate([
-                'name' => 'required|min:3|unique:users,name',
-                'user_name' => 'required|alpha_dash|max:30|unique:users,user_name',
-                'password' => 'required|min:8|max:25',
-                'confirm_password' => 'same:password'
+                'name' => 'required',
+                'user_name' => 'required',
+                'role_id' => 'required',
             ], [
                 'required' => 'This field is required.',
-                'password.required' => 'Enter User password',
-                'confirm_password.required' => 'Confirm User password',
-                'confirm_password.same' => 'The confirm password must be the same to the password',
             ]);
 
             $User = new User();
             $User['user_name'] = $this->user_name;
-            $User['password'] =  Hash::make($this->password);
+            $User['lrn'] = $this->user_name;
+            $User['password'] =  Hash::make($this->user_name);
             $User['name'] = $this->name;
             $User['is_enable'] = true;
             $success = $User->save();
 
-            if ($success)
-            {
+            if ($success) {
+        $userId = $User->id;
+        $UserRole = new user_role();
+        $UserRole['user_id'] = $userId;
+        $UserRole['role_id'] = $this->role_id;
+        $UserRole['created_at'] = now();
+        $UserRole['updated_at'] = now();
+        $UserRole->save();
 
                 $this->showToastr('User created Successfully','success');
                 $this->dispatch('closeCreateUserModal');
@@ -319,11 +326,21 @@ class UserManagement extends Component
     
     public function render()
     {
-        return view('livewire.admin.user-management',[
-            'Roles' => role::orderby('role_name','asc')->get(),
-            'Users' => User::where('user_name', 'like',  '%'.$this->Search.'%')->where('id','!=', 1)->orwhere('name', 'like',  '%'.$this->Search.'%')->where('id','!=', 1)->orderby('updated_at','desc')->get()->take($this->limitPerPage),
-           
-        ]);
+       return view('livewire.admin.user-management', [
+    'Roles' => role::orderBy('role_name', 'asc')->get(),
+    'Users' => User::where(function($query) {
+            $query->where('user_name', 'like', '%'.$this->Search.'%')
+                  ->orWhere('name', 'like', '%'.$this->Search.'%');
+        })
+        ->where('id', '!=', 1)
+        ->whereDoesntHave('Roles.Role', function($q) {
+            $q->where('id', '4');
+        })
+        ->orderBy('updated_at', 'desc')
+        ->take($this->limitPerPage)
+        ->get(),
+]);
+
     
     }
 }

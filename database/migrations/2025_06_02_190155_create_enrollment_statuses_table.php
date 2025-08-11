@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('enrollment_statuses', function (Blueprint $table) {
             $table->id();
             $table->string('lrn');
-            $table->string('ip');
             $table->string('transferee');
             $table->string('status');
             $table->string('enrollment_type');

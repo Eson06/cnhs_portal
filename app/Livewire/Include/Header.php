@@ -13,9 +13,7 @@ class Header extends Component
 {
     public function LogoutHandler() {
         activity_log::create([
-            'name' => auth('web')->user()->name,
-            'user_name' => auth('web')->user()->user_name,
-            'role' => auth('web')->user()->role,
+            'lrn' => auth('web')->user()->lrn,
             'activity' => 'Logged out',
         ]);
     

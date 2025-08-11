@@ -107,7 +107,7 @@
                     
                 </div>
 
-                    <div class="col-sm-6">
+                    <div class="col-sm-8">
                         <div class="form-floating mb-3">
                             <input 
                                 type="date" 
@@ -122,28 +122,16 @@
                         </div>
                     </div>
                 
-                    <div class="col-sm-2">
-                        <div class="form-floating mb-3">
-                            <input 
-                                type="text" 
-                                class="form-control" 
-                                id="age"  
-                               
-                                readonly
-                            >
-                            <label for="age">Age</label>
-                        </div>
-                    </div>
             </div>
 
             <div class="row">
-                <div class="col-sm-12">
+                <div class="col-sm-9">
                     <div class="form-floating mb-3">
                         <input 
                             type="text" 
                             class="form-control @error('address') is-invalid @enderror" 
                             id="address"  
-                            maxlength="30"  
+                            maxlength="100"  
                             autocomplete="off" 
                             oninput="this.value = this.value.toUpperCase()"  
                             placeholder="Home Address" 
@@ -151,6 +139,22 @@
                         >
                         <label for="address">Home Address</label>
                         @error('address')
+                            <p class="text-danger text-xs mt-1">{{ $message }}</p>
+                        @enderror
+                    </div>
+                </div>
+                     <div class="col-sm-3">
+                    <div class="form-floating mb-3">
+                        <select 
+                            class="form-control @error('ip') is-invalid @enderror" 
+                            id="ip" 
+                            wire:model="ip">
+                            <option value="">-- Select --</option>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        <label for="ip">Indigenous People</label>
+                        @error('ip')
                             <p class="text-danger text-xs mt-1">{{ $message }}</p>
                         @enderror
                     </div>
@@ -276,7 +280,7 @@
             </div>
             <li class="hr-text m-2 mb-3">Additional Enrollment Information</li>
             <div class="row">
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <select 
                             class="form-control @error('school_year') is-invalid @enderror" 
@@ -295,24 +299,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3">
-                    <div class="form-floating mb-3">
-                        <select 
-                            class="form-control @error('ip') is-invalid @enderror" 
-                            id="ip" 
-                            wire:model="ip">
-                            <option value="">-- Select --</option>
-                            <option value="Yes">Yes</option>
-                            <option value="No">No</option>
-                        </select>
-                        <label for="ip">Indigenous People</label>
-                        @error('ip')
-                            <p class="text-danger text-xs mt-1">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <select 
                             class="form-control @error('transferee') is-invalid @enderror" 
@@ -329,7 +316,7 @@
                     </div>
                 </div>
 
-                <div class="col-sm-3">
+                <div class="col-sm-4">
                     <div class="form-floating mb-3">
                         <select 
                             class="form-control @error('enrollment_type') is-invalid @enderror" 

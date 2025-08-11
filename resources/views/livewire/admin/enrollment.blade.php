@@ -52,11 +52,29 @@
           <div>
             <div class="row align-items-center">
               <div class="col-auto">
-                <span class="avatar avatar-lg rounded-circle" style="background-image: url({{asset('images/cnhs_logo.png')}})"></span>
+                <!-- <span class="avatar avatar-lg rounded-circle" style="background-image: url({{asset('images/cnhs_logo.png')}})"></span> -->
               </div>
               <div class="col">
                 <div class="card-title">
+                    <svg class="icon icon-tabler icon-tabler-id mx-2 text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <rect x="3" y="4" width="18" height="16" rx="3"></rect>
+                    <circle cx="9" cy="10" r="2"></circle>
+                    <line x1="15" y1="8" x2="17" y2="8"></line>
+                    <line x1="15" y1="12" x2="17" y2="12"></line>
+                    </svg>
                     {{ $student_information->lrn }}
+                     @if ($student_information->logincredential)
+                                        @if ($student_information->logincredential->is_enable === 1)
+                                             <span class="badge badge-sm bg-success p-1 ">Active</span>
+                                        @elseif ($student_information->logincredential->is_enable === 0)
+                                             <span class="badge badge-sm bg-danger p-1 ">Inactive</span>
+                                        @else
+                                             <span class="badge badge-sm bg-seconday p-1 ">No Login Credential</span>
+                                        @endif
+                                    @else
+                                         <span class="badge badge-sm bg-seconday p-1 ">No Login Credential</span>
+                                    @endif
                 </div>
 
                
@@ -66,66 +84,39 @@
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                         <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                      </svg>
-                     {{ $student_information->last_name }}, {{ $student_information->first_name }} {{ $student_information->middle_name }}
+                     {{ $student_information->last_name }}, {{ $student_information->first_name }} {{ $student_information->middle_name }}   
                 </div>
 
-                <div class="card-description">
-                    <svg  class="icon icon-tabler icon-tabler-user mx-2 text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                   <div class="card-description">
+                    <svg class="icon icon-tabler icon-tabler-calendar mx-2 text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                     </svg>
-                    {{$student_information->gender}}
-                </div>
-
-                <div class="card-description">
-                    <svg  class="icon icon-tabler icon-tabler-user mx-2 text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                     </svg>
-                    {{$student_information->birthday}}
-                </div>
-
-                <div class="card-description">
-                    <svg  class="icon icon-tabler icon-tabler-user mx-2 text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                     </svg>
-                    {{$student_information->address}}
-                </div>
-
-                <div class="card-description">
-                    <svg  class="icon icon-tabler icon-tabler-user mx-2 text-muted" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
-                        <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
-                     </svg>
-                    {{$student_information->contact_number}}
-                   {{$student_information->email}}
-                </div>
+                        <rect x="4" y="5" width="16" height="16" rx="2"></rect>
+                        <line x1="16" y1="3" x2="16" y2="7"></line>
+                        <line x1="8" y1="3" x2="8" y2="7"></line>
+                        <line x1="4" y1="11" x2="20" y2="11"></line>
+                        </svg>
+                             <span class="badge badge-sm bg-info m-1 ">{{ $student_information->enrolled->school_year }}</span>
+                        </div>
               </div>
             </div>
           </div>
 
-          {{-- <div class="card-actions">
+        <div class="card-actions">
             <a href="#" class="btn-action" data-bs-toggle="dropdown">
                 <svg  class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path d="M12 12m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M12 19m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path><path d="M12 5m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0"></path></svg>
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
 
-                <a class="dropdown-item" href="#" wire:click.prevent="editUser({{ $User->id }})">
-                    <svg  class="icon icon-tabler icon-tabler-edit mx-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1"></path>
-                        <path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z"></path>
-                        <path d="M16 5l3 3"></path>
-                     </svg>
-                    Edit
+                <a class="dropdown-item" wire:click.prevent="NewEnrollment({{$student_information->id}})">
+                    <svg class="icon icon-tabler icon-tabler-eye mx-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                    <circle cx="12" cy="12" r="2" />
+                    <path d="M22 12c0 5.523 -4.477 10 -10 10s-10 -4.477 -10 -10s4.477 -10 10 -10s10 4.477 10 10z" />
+                    </svg>
+                    Enrollment
                 </a>
 
-                <a class="dropdown-item" href="#" wire:click.prevent="editRole({{ $User->id }})">
+                <a class="dropdown-item" href="#" wire:click.prevent="StudentCredential({{$student_information->id}})">
                     <svg  class="icon icon-tabler icon-tabler-user-cog mx-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
                         <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
@@ -138,30 +129,13 @@
                         <path d="M15.97 17.25l1.3 .75"></path>
                         <path d="M20.733 20l1.3 .75"></path>
                      </svg>
-                    Role
+                    Create Login Credential
                 </a>
 
 
-                @if($User->is_enable == false)
-                <a class="dropdown-item" href="#" wire:click.prevent="activateUser({{ $User->id }})">
-                    <svg  class="icon icon-tabler icon-tabler-check mx-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M5 12l5 5l10 -10"></path>
-                     </svg>
-                    Activate
-                </a>
-                @else
-                <a class="dropdown-item" href="#" wire:click.prevent="deactivateUser({{ $User->id }})">
-                    <svg  class="icon icon-tabler icon-tabler-x mx-2" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M18 6l-12 12"></path>
-                        <path d="M6 6l12 12"></path>
-                     </svg>
-                    Deactivate
-                </a>
-                @endif
+                
               </div>
-          </div> --}}
+          </div>
 
         </div>
     </div>
@@ -196,6 +170,8 @@
 </div>
 
 @include('livewire.admin.modal.create-enrollment')
+@include('livewire.admin.modal.enroll-student')
+@include('livewire.admin.modal.create-login')
 @push('scripts')
 <script data-navigate-once>
     document.addEventListener('livewire:navigated', () => {
@@ -208,11 +184,23 @@
             $('#createenrollment').modal('hide');
         });
 
+    Livewire.on('showEnrollStudentModal', (event) => {
+            $('#enrollstudent').modal('show');
+        });
+
+        Livewire.on('closeEnrollStudentModal', (event) => {
+            $('#enrollstudent').modal('hide');
+        });
+
+            Livewire.on('showCreateLoginModal', (event) => {
+            $('#createlogin').modal('show');
+        });
+
+        Livewire.on('closeCreateLoginModal', (event) => {
+            $('#createlogin').modal('hide');
+        });
     });
 
-</script>
-
-<script>
     document.addEventListener('DOMContentLoaded', function () {
         const birthdayInput = document.getElementById('birthday');
         const ageInput = document.getElementById('age');

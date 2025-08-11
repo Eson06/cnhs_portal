@@ -32,7 +32,7 @@
                             <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
                             <path d="M16 19h6" />
                         </svg>
-                        <strong>{{ $subject->grade_section }}</strong>
+                        <strong>{{ $subject->room_assign->grade }} - {{ $subject->room_assign->section }}</strong>
                     </div>
                     <div class="card-body d-flex flex-column justify-content-center text-center flex-grow-1">
                         <h6 class="card-title mb-0">{{ $subject->class_subject }}</h6>
@@ -40,7 +40,7 @@
                     <div class="card-footer text-center bg-light">
                         <div class="d-flex justify-content-center gap-3">
                             <!-- View Icon -->
-                            <a href="#" class="text-primary" title="View">
+                            <a href="{{ route('teacher.class-record', ['id' => $subject->id]) }}" class="text-primary" title="View">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-eye" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                     <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                     <circle cx="12" cy="12" r="2" />

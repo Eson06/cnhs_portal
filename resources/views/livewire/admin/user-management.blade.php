@@ -68,11 +68,11 @@
                   <div>
                     <div class="row align-items-center">
                       <div class="col-auto">
-                        <span class="avatar avatar-lg rounded-circle" style="background-image: url({{asset('images/cnhs_logo.png')}})"></span>
+                        <!-- <span class="avatar avatar-lg rounded-circle" style="background-image: url({{asset('images/cnhs_logo.png')}})"></span> -->
                       </div>
                       <div class="col">
-                        <div class="card-title">
-                            {{ $User->name }}
+                        <div class="card-title">    
+                             {{ $User->user_name }}
                             @if($User->is_enable == false)
                             <span class="badge badge-sm bg-danger p-1 ">Inactive</span>
                             @else
@@ -87,7 +87,7 @@
                                 <path d="M8 7a4 4 0 1 0 8 0a4 4 0 0 0 -8 0"></path>
                                 <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2"></path>
                              </svg>
-                             {{ $User->user_name }}
+                             {{ $User->name }}
                         </div>
 
                         <div class="card-description">

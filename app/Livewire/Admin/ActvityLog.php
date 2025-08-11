@@ -16,11 +16,8 @@ class ActvityLog extends Component
 
     public function activitylogList() {
         $this->count = activity_log::latest('updated_at')
-        ->where('name', 'like',  '%'.$this->Search.'%')
-        ->orwhere('user_name', 'like',  '%'.$this->Search.'%')
         ->orwhere('activity', 'like',  '%'.$this->Search.'%')
         ->orwhere('created_at', 'like',  '%'.$this->Search.'%')
-        ->orwhere('role', 'like',  '%'.$this->Search.'%')
         ->count();
         if($this->count > $this->limitPerPage) {
             if($this->count > 10) {
@@ -63,10 +60,7 @@ class ActvityLog extends Component
     public function render()
 {
     $activity_logs = activity_log::latest('updated_at')
-        ->where('name', 'like',  '%'.$this->Search.'%')
-        ->orwhere('user_name', 'like',  '%'.$this->Search.'%')
         ->orwhere('created_at', 'like',  '%'.$this->Search.'%')
-        ->orwhere('role', 'like',  '%'.$this->Search.'%')
         ->orwhere('activity', 'like',  '%'.$this->Search.'%')
         ->take($this->limitPerPage)
         ->get();

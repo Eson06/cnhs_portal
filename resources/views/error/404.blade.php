@@ -4,7 +4,7 @@
 
 @section('message')
 
-    <span class="avatar avatar-lg rounded-circle" style="background-image: url({{ asset('images/logo.png') }})"></span>
+    <!-- <span class="avatar avatar-lg rounded-circle" style="background-image: url({{ asset('images/logo.png') }})"></span> -->
 
     <div class="alert alert-danger m-4" role="alert">
         <div class="d-flex">

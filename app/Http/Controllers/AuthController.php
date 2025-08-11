@@ -32,9 +32,7 @@ class AuthController extends Controller
                     $urlIntended = session()->get('url.intended');
                     if($urlIntended != null) {
                         activity_log::create([
-                            'name' => $checkUser->name,
-                            'user_name' => $checkUser->user_name,
-                            'role' => $checkUser->role,
+                            'lrn' => $checkUser->lrn,
                             'activity' => 'Logged In',
                         ]);
                         // Log::channel('users')->info('User {id} succesfully logged in. With Ip Address {ip} ', ['id' => $checkUser->user_name,'ip' => $request->getClientIp()]);
@@ -45,9 +43,7 @@ class AuthController extends Controller
 
                         // Log::channel('users')->info('User {id} succesfully logged in. With Ip Address {ip}', ['id' => $checkUser->user_name, 'ip' => $request->getClientIp()]);
                         activity_log::create([
-                            'name' => $checkUser->name,
-                            'user_name' => $checkUser->user_name,
-                            'role' => $checkUser->role,
+                            'lrn' => $checkUser->lrn,
                             'activity' => 'Logged In',
                         ]);
                         RateLimiter::clear($request->input('user_name').'_login');

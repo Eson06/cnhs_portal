@@ -30,7 +30,7 @@
                         <select class="form-select @error('grade_section') is-invalid @enderror" id="grade_section" wire:model="grade_section">
                             <option value="">---Select---</option>
                             @forelse ($class_monitorings as $index => $class_monitoring)
-                                <option value="{{$class_monitoring->grade}}-{{$class_monitoring->section}}">{{$class_monitoring->grade}}-{{$class_monitoring->section}}</option>
+                                <option value="{{$class_monitoring->class_id}}">{{$class_monitoring->grade}}-{{$class_monitoring->section}}</option>
                                 @empty
                                 <option value="">No Grade and Section Found</option>
                             @endforelse

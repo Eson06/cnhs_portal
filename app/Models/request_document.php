@@ -5,19 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class enrollment_status extends Model
+class request_document extends Model
 {
     use HasFactory;
-    
-    protected $fillable = [
-        'lrn',
-        'transferee',
-        'status',
-        'enrollment_type',
-        'school_year',
-    ];
 
-           public function Student_info() {
+        public function Requested() {
         return $this->belongsTo(student_information::class,'lrn', 'lrn');
     }
 }

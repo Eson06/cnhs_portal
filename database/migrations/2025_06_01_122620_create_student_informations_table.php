@@ -26,6 +26,7 @@ return new class extends Migration
             $table->string('ec_contactnumber');
             $table->string('ec_address');
             $table->string('ec_relationship');
+             $table->string('ip');
             $table->timestamps();
         });
     }

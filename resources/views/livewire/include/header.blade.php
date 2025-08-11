@@ -18,9 +18,9 @@
                 </div>
                 <div class="d-none d-xl-block text-end ps-2">
                   {{ auth('web')->user()->name }}
-                  <div class="mt-1 small text-secondary"> Provincial Jail(Mamburao)</div>
+                  <div class="mt-1 small text-secondary"> {{ auth('web')->user()->lrn }}</div>
                 </div>
-                <span class="avatar avatar-sm rounded-circle mx-2" style="background-image:url({{asset('images/logo.png')}})"></span>
+                <!-- <span class="avatar avatar-sm rounded-circle mx-2" style="background-image:url({{asset('images/logo.png')}})"></span> -->
               </a>
               <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                 {{-- <a href="#" class="dropdown-item" data-bs-toggle="tooltip" data-bs-placement="left" title="Setting Your own Profile" wire:navigate>Change Profile</a> --}}

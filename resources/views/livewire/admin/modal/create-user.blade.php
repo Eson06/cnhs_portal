@@ -2,9 +2,9 @@
     <div wire:ignore.self class="modal fade" id="createUser" tabindex="-1" role="dialog" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false">
         <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 
-            <form class="modal-content" method="POST" @if($updateUser == true) wire:submit.prevent="UserUpdate()"  @else wire:submit.prevent="addUser()" @endif>
+            <form class="modal-content" method="POST" wire:submit.prevent="addUser()">
                 <div class="modal-header">
-                    <h5 class="modal-title">{{ $updateUser == true ? 'Edit' : 'Add'}} User</h5>
+                    <h5 class="modal-title"> User</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -25,64 +25,35 @@
 
                             </div>
 
-
-                            {{-- <div class="mb-3 row">
-                                <label class="col-4 col-form-label">Sub Office Assigned</label>
-                                <div class="col">
-                                    <select class="form-select  @error('municipality_id') is-invalid @enderror"  data-placeholder="Select Fund" id="municipality_id"  wire:model.live="municipality_id" >
-                                        <option value="" selected>--- Choose Option ---</option>
-                                        @forelse ($Municipalities as $Municipality )
-                                            <option value="{{ $Municipality->id }}"> {{ $Municipality->municipality }} </option>
-
-                                        @empty
-
-                                        @endforelse
-
-
-                                    </select>
-                                    @error('municipality_id')
-                                    <p class="text-danger text-xs mt-1">{{$message}}</p>
-                                    @enderror
-                                </div>
-                              </div> --}}
-
                               <div class="hr-text my-4">Log in Credentials</div>
 
                               <div class="col-12 col-sm-12 col-md-12">
 
                                 <div class="form-floating mb-3">
-                                    <input type="text" class="form-control @error('user_name') is-invalid @enderror" id="user_name"  maxlength="30"  autocomplete="off" oninput="this.value = this.value.toUpperCase()"  placeholder="Enter User Name" wire:model="user_name" @if($updateUser == True) readonly @endif>
-                                    <label for="user_name">User Name</label>
+                                    <input type="text" class="form-control @error('user_name') is-invalid @enderror" id="user_name"  maxlength="30"  autocomplete="off" oninput="this.value = this.value.toUpperCase()"  placeholder="Enter ID No." wire:model="user_name">
+                                    <label for="user_name">ID No.</label>
                                     @error('user_name')
                                     <p class="text-danger text-xs mt-1">{{$message}}</p>
                                     @enderror
                                 </div>
 
+                                <div class="form-floating mb-3">
+    <select class="form-select @error('role_id') is-invalid @enderror" 
+            id="role_id" 
+            wire:model="role_id">
+        <option value="">-- Select Role --</option>
+        <option value="2">Admin</option> <!-- Assuming ID 1 = Admin -->
+        <option value="3">Teacher</option> <!-- Assuming ID 2 = Teacher -->
+    </select>
+    <label for="role_id">Role</label>
+    @error('role_id')
+        <p class="text-danger text-xs mt-1">{{$message}}</p>
+    @enderror
+</div>
+
+
                             </div>
 
-
-                            <div class="row">
-                                <div class="col-12 col-sm-6 col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"  maxlength="30"  autocomplete="off" placeholder="Enter Password" wire:model="password">
-                                        <label for="password">Password</label>
-                                        @error('password')
-                                        <p class="text-danger text-xs mt-1">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-12 col-sm-6 col-md-6">
-                                    <div class="form-floating mb-3">
-                                        <input type="password" class="form-control @error('confirm_password') is-invalid @enderror" id="confirmpassword"  maxlength="30"  autocomplete="off" placeholder="Confirm Password" wire:model="confirm_password">
-                                        <label for="confirmpassword">Confirm Password</label>
-                                        @error('confirm_password')
-                                        <p class="text-danger text-xs mt-1">{{$message}}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                            </div>
                         </div>
 
                     </div>

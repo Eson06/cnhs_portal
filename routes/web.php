@@ -11,8 +11,10 @@ use App\Livewire\Admin\AnnouncementForm;
 use App\Livewire\Admin\ClassMonitoring;
 use App\Livewire\Admin\Enrollment;
 use App\Livewire\Student\StudentDashboard;
+use App\Livewire\Student\RequestForm;
 use App\Livewire\Teacher\MyRecord;
 use App\Livewire\Teacher\MySubject;
+use App\Livewire\Teacher\ClassRecord;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,11 +60,13 @@ Route::middleware(['auth:web'],['revalidate'])->group(function() {
 
     Route::prefix('student-panel')->name('student.')->group(function(){
         Route::get('/student-dashboard', StudentDashboard::class)->name('student-dashboard');
+          Route::get('/request-form', RequestForm::class)->name('request-form');
     });
 
     Route::prefix('teacher-panel')->name('teacher.')->group(function(){
         Route::get('/record', MyRecord::class)->name('my-record');
         Route::get('/subject', MySubject::class)->name('my-subject');
+        Route::get('/classrecord/{id}', ClassRecord::class)->name('class-record');
     });
 
 

@@ -9,9 +9,11 @@ class activity_log extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'name',
-        'user_name',
-        'role',
+        'lrn',
         'activity',
     ];
+
+        public function aluser() {
+        return $this->belongsTo(user::class,'lrn', 'lrn');
+    }
 }
